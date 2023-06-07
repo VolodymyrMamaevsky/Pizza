@@ -1,21 +1,19 @@
-import React from "react";
+import { useState, useEffect } from "react";
 
 import Categories from "./components/Categories";
 import Header from "./components/Header";
 import PizzaBlock from "./components/PizzaBlock";
 import Sort from "./components/Sort";
-
 import "./scss/app.scss";
 
 function App() {
-  const [items, setItems] = React.useState([]);
+  const [items, setItems] = useState([]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     fetch("https://6454c0bbf803f34576304938.mockapi.io/items")
       .then((res) => res.json())
       .then((json) => setItems(json));
   }, []);
-
   return (
     <div className="wrapper">
       <Header />
@@ -38,5 +36,4 @@ function App() {
     </div>
   );
 }
-
 export default App;

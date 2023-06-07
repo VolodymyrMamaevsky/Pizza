@@ -1,10 +1,10 @@
-import React from "react";
+import { useState } from "react";
 
-import { typeDough } from "../utils/constants";
+const typeDough = ["Thin", "Traditional"];
 
 function PizzaBlock({ name, price, imageUrl, sizes, types }) {
-  const [activeSize, setActiveSize] = React.useState(0);
-  const [activeType, setActiveType] = React.useState(0);
+  const [activeSize, setActiveSize] = useState(0);
+  const [activeType, setActiveType] = useState(0);
 
   return (
     <div className="pizza-block">
