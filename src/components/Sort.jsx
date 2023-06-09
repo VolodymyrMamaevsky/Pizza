@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 const sortList = ["Popular", "Price", "Abc"];
 
@@ -41,7 +42,7 @@ function Sort() {
             {sortList.map((list, index) => {
               return (
                 <li
-                  key={index}
+                  key={uuidv4()}
                   onClick={() => onSortItemClick(index)}
                   className={sortItem === index ? "active" : ""}
                 >
