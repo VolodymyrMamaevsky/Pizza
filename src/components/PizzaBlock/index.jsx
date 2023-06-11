@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
-const typeDough = ["Thin", "Traditional"];
+import { typeDough } from "../../utils/constants";
 
 function PizzaBlock({ name, price, imageUrl, sizes, types }) {
   const [activeSize, setActiveSize] = useState(0);

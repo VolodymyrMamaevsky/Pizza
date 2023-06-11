@@ -1,0 +1,33 @@
+.input {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 8px 15px;
+  width: 300px;
+  border-radius: 10px;
+  margin: 5px;
+  padding-left: 40px;
+  font-size: 16px;
+
+  &:focus {
+    border: 1px solid rgba(0, 0, 0, 0.3);
+  }
+}
+
+.icon {
+  width: 22px;
+  height: 22px;
+  opacity: 0.4;
+  position: absolute;
+  left: 14px;
+  top: 12px;
+}
+
+.root {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  left: -120px;
+
+  @media (max-width: 1200px) {
+    left: 0;
+  }
+}

@@ -1,10 +1,8 @@
-import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
-const categories = ["All", "Meat", "Veg", "Grill", "Hot"];
+import { categories } from "../utils/constants";
 
-function Categories() {
-  const [activeItems, setActiveItems] = useState(0);
+function Categories({ categoryId, onClickCategory }) {
   return (
     <div className="categories">
       <ul>
@@ -12,8 +10,8 @@ function Categories() {
           return (
             <li
               key={uuidv4()}
-              onClick={() => setActiveItems(index)}
-              className={activeItems === index ? "active" : ""}
+              onClick={() => onClickCategory(index)}
+              className={categoryId === index ? "active" : ""}
             >
               {category}
             </li>

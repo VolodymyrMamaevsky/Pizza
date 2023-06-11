@@ -1,14 +1,13 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
-const sortList = ["Popular", "Price", "Abc"];
+import { sortList } from "../utils/constants";
 
-function Sort() {
+function Sort({ sortType, onClickType }) {
   const [open, setOpen] = useState(false);
-  const [sortItem, setSortItem] = useState(0);
 
   const onSortItemClick = (index) => {
-    setSortItem(index);
+    onClickType(index);
     setOpen(false);
   };
 
@@ -33,7 +32,7 @@ function Sort() {
             setOpen(!open);
           }}
         >
-          {sortList[sortItem]}
+          {sortType.name}
         </span>
       </div>
       {open && (
@@ -43,8 +42,8 @@ function Sort() {
               return (
                 <li
                   key={uuidv4()}
-                  onClick={() => onSortItemClick(index)}
-                  className={sortItem === index ? "active" : ""}
+                  onClick={() => onSortItemClick(list)}
+                  className={sortType.sort === list.sort ? "active" : ""}
                 >
                   {list}
                 </li>
