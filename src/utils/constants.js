@@ -1,11 +1,11 @@
-export const categories = ["All", "Meat", "Vegetarian", "Grill", "Hot"];
+export const categories = ["All", "Meat", "Vegetarian", "Grill", "Spicy"];
 export const typeDough = ["Thin", "Traditional"];
 
 export const sortList = [
-  { name: "Popular(DESC)", sort: "rating" },
-  { name: "Popular(ASC)", sort: "-rating" },
-  { name: "Price(DESC)", sort: "price" },
-  { name: "Price(ASC)", sort: "-price" },
-  { name: "Abc(DESC)", sort: "name" },
-  { name: "Abc(ASC)", sort: "-name" },
+  { name: "Popular(up)", sort: "rating" },
+  { name: "Popular(down)", sort: "-rating" },
+  { name: "Price(up)", sort: "price" },
+  { name: "Price(down)", sort: "-price" },
+  { name: "Abc(up)", sort: "name" },
+  { name: "Abc(down)", sort: "-name" },
 ];

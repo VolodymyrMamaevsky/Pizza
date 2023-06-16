@@ -31,3 +31,16 @@
     left: 0;
   }
 }
+.closeBtn {
+  width: 18px;
+  height: 18px;
+  opacity: 0.4;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+
+  &:hover {
+    opacity: 0.8;
+    cursor: pointer;
+  }
+}

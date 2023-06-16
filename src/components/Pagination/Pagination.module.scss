@@ -1,0 +1,39 @@
+.root {
+  display: flex;
+  gap: 15px;
+
+  :global {
+    li {
+      display: flex;
+
+      &.selected {
+        a {
+          color: #fff;
+          background-color: #fe6f1e;
+        }
+      }
+
+      a {
+        display: flex;
+        justify-content: center;
+        align-self: center;
+        color: #fe6f1e;
+        padding: 10px;
+        width: 45px;
+        height: 45px;
+        border: 1px solid #fe6f1e;
+        border-radius: 30px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #fe6f1e;
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 730px) {
+    justify-content: center;
+  }
+}

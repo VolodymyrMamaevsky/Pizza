@@ -45,7 +45,7 @@ function Sort({ sortType, onClickType }) {
                   onClick={() => onSortItemClick(list)}
                   className={sortType.sort === list.sort ? "active" : ""}
                 >
-                  {list}
+                  {list.name}
                 </li>
               );
             })}
