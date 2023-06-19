@@ -2,6 +2,6 @@
 
 #### Online pizza store.
 
-#### Technologies: React, Typescript, Redux Toolkit, Axios
+#### Technologies: React, Typescript, Redux Toolkit, React router, Axios
 
 #### Project link:
