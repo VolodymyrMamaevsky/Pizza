@@ -1,13 +1,18 @@
 import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { setSortType } from "../redux/slices/filterSlice";
 import { v4 as uuidv4 } from "uuid";
-
 import { sortList } from "../utils/constants";
 
-function Sort({ sortType, onClickType }) {
+function Sort() {
+  const dispatch = useDispatch();
+
+  const sortItem = useSelector((state) => state.filter.sortProp);
+
   const [open, setOpen] = useState(false);
 
-  const onSortItemClick = (index) => {
-    onClickType(index);
+  const onSortItemClick = (object) => {
+    dispatch(setSortType(object));
     setOpen(false);
   };
 
@@ -32,7 +37,7 @@ function Sort({ sortType, onClickType }) {
             setOpen(!open);
           }}
         >
-          {sortType.name}
+          {sortItem.name}
         </span>
       </div>
       {open && (
@@ -43,7 +48,7 @@ function Sort({ sortType, onClickType }) {
                 <li
                   key={uuidv4()}
                   onClick={() => onSortItemClick(list)}
-                  className={sortType.sort === list.sort ? "active" : ""}
+                  className={sortItem.sort === list.sort ? "active" : ""}
                 >
                   {list.name}
                 </li>
