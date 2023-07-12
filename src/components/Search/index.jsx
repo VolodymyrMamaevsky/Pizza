@@ -4,22 +4,23 @@ import styles from "./Search.module.scss";
 
 import searchLogo from "../../assets/img/search-icon.svg";
 import closeIcon from "../../assets/img/close-icon.svg";
-import { SearchContext } from "../../App";
+import { useDispatch } from "react-redux";
+import { setSearchValue } from "../../redux/slices/filterSlice";
 
 function Search() {
+  const dispatch = useDispatch();
   const [value, setValue] = React.useState("");
-  const { setSearchValue } = React.useContext(SearchContext);
 
   const inputLink = React.useRef();
 
   const onClickClear = () => {
-    setSearchValue("");
+    dispatch(setSearchValue(""));
     setValue("");
     inputLink.current.focus();
   };
   const updateSearchValue = React.useCallback(
     debounce((str) => {
-      setSearchValue(str);
+      dispatch(setSearchValue(str));
     }, 300),
     []
   );

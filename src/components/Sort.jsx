@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setSortType } from "../redux/slices/filterSlice";
+import { setSortType, sortSelector } from "../redux/slices/filterSlice";
 import { v4 as uuidv4 } from "uuid";
 import { sortList } from "../utils/constants";
 
@@ -8,7 +8,7 @@ function Sort() {
   const dispatch = useDispatch();
   const sortRef = React.useRef();
 
-  const sortItem = useSelector((state) => state.filter.sortProp);
+  const sortItem = useSelector(sortSelector);
   const [open, setOpen] = React.useState(false);
 
   const onSortItemClick = (object) => {
@@ -18,8 +18,7 @@ function Sort() {
 
   React.useEffect(() => {
     const handleClickOutside = (e) => {
-      const path = e.path || (e.composedPath && e.composedPath());
-      if (!path || !path.includes(sortRef.current)) {
+      if (!e.composedPath().includes(sortRef.current)) {
         setOpen(false);
       }
     };

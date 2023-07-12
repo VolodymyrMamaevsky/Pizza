@@ -12,10 +12,10 @@ function PizzaBlock({ id, name, price, imageUrl, sizes, types }) {
     state.cart.items.find((obj) => obj.id === id)
   );
 
-  const addedCount = cartItem ? cartItem.count : 0;
-
   const [activeSize, setActiveSize] = useState(0);
   const [activeType, setActiveType] = useState(0);
+
+  const addedCount = cartItem ? cartItem.count : 0;
 
   const onClickAdd = () => {
     const item = {
