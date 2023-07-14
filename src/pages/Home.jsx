@@ -88,6 +88,7 @@ function Home() {
   }, [categoryId, sortProp, searchValue, currentPage]);
 
   const pizzas = items.map((pizza) => <PizzaBlock {...pizza} key={uuidv4()} />);
+
   const skeletons = [...new Array(4)].map((_, index) => (
     <Skeleton key={uuidv4()} />
   ));
