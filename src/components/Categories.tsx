@@ -2,7 +2,15 @@ import { v4 as uuidv4 } from "uuid";
 
 import { categories } from "../utils/constants";
 
-function Categories({ categoryId, onClickCategory }) {
+type CategoriesProps = {
+  categoryId: number;
+  onClickCategory: any;
+};
+
+const Categories: React.FC<CategoriesProps> = ({
+  categoryId,
+  onClickCategory,
+}) => {
   return (
     <div className="categories">
       <ul>
@@ -20,5 +28,5 @@ function Categories({ categoryId, onClickCategory }) {
       </ul>
     </div>
   );
-}
+};
 export default Categories;

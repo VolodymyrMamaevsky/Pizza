@@ -2,22 +2,22 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setSortType, sortSelector } from "../redux/slices/filterSlice";
 import { v4 as uuidv4 } from "uuid";
-import { sortList } from "../utils/constants";
+import { sortList, sortListItem } from "../utils/constants";
 
 function Sort() {
   const dispatch = useDispatch();
-  const sortRef = React.useRef();
+  const sortRef = React.useRef<HTMLDivElement>(null);
 
   const sortItem = useSelector(sortSelector);
   const [open, setOpen] = React.useState(false);
 
-  const onSortItemClick = (object) => {
+  const onSortItemClick = (object: sortListItem) => {
     dispatch(setSortType(object));
     setOpen(false);
   };
 
   React.useEffect(() => {
-    const handleClickOutside = (e) => {
+    const handleClickOutside = (e: any) => {
       if (!e.composedPath().includes(sortRef.current)) {
         setOpen(false);
       }

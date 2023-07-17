@@ -1,7 +1,18 @@
-export const categories = ["All", "Meat", "Vegetarian", "Grill", "Spicy"];
+export const categories: string[] = [
+  "All",
+  "Meat",
+  "Vegetarian",
+  "Grill",
+  "Spicy",
+];
 export const typeDough = ["Thin", "Traditional"];
 
-export const sortList = [
+export type sortListItem = {
+  name: string;
+  sort: string;
+};
+
+export const sortList: sortListItem[] = [
   { name: "Popular (up)", sort: "rating" },
   { name: "Popular (down)", sort: "-rating" },
   { name: "Price (up)", sort: "price" },

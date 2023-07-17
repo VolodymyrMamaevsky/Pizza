@@ -7,16 +7,16 @@ import closeIcon from "../../assets/img/close-icon.svg";
 import { useDispatch } from "react-redux";
 import { setSearchValue } from "../../redux/slices/filterSlice";
 
-function Search() {
+const Search: React.FC = () => {
   const dispatch = useDispatch();
   const [value, setValue] = React.useState("");
 
-  const inputLink = React.useRef();
+  const inputLink = React.useRef<HTMLInputElement>(null);
 
   const onClickClear = () => {
     dispatch(setSearchValue(""));
     setValue("");
-    inputLink.current.focus();
+    inputLink.current?.focus();
   };
   const updateSearchValue = React.useCallback(
     debounce((str) => {
@@ -25,7 +25,7 @@ function Search() {
     []
   );
 
-  const onChangeInput = (e) => {
+  const onChangeInput = (e: any) => {
     setValue(e.target.value);
     updateSearchValue(e.target.value);
   };
@@ -50,6 +50,6 @@ function Search() {
       )}
     </div>
   );
-}
+};
 
 export default Search;

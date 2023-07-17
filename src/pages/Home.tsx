@@ -19,7 +19,7 @@ import {
 import { fetchPizzas, pizzaDataSelector } from "../redux/slices/pizzasSlice";
 import { sortList } from "../utils/constants";
 
-function Home() {
+const Home: React.FC = () => {
   const { items, status } = useSelector(pizzaDataSelector);
   const { sortProp, categoryId, currentPage, searchValue } =
     useSelector(filterSelector);
@@ -28,11 +28,11 @@ function Home() {
   const isMounted = React.useRef(false);
   const isSearch = React.useRef(false);
 
-  const onCLickCategory = (id) => {
+  const onCLickCategory = (id: number) => {
     dispatch(setCategoryId(id));
   };
 
-  const onChangePage = (num) => {
+  const onChangePage = (num: number) => {
     dispatch(setCurrentPage(num));
   };
 
@@ -43,6 +43,7 @@ function Home() {
     const search = searchValue ? `&search=${searchValue}` : ``;
 
     dispatch(
+      // @ts-ignore
       fetchPizzas({
         category,
         sortBy,
@@ -87,7 +88,9 @@ function Home() {
     isSearch.current = false;
   }, [categoryId, sortProp, searchValue, currentPage]);
 
-  const pizzas = items.map((pizza) => <PizzaBlock {...pizza} key={uuidv4()} />);
+  const pizzas = items.map((pizza: any) => (
+    <PizzaBlock {...pizza} key={uuidv4()} />
+  ));
 
   const skeletons = [...new Array(4)].map((_, index) => (
     <Skeleton key={uuidv4()} />
@@ -110,5 +113,5 @@ function Home() {
       <Pagination currentPage={currentPage} onChangePage={onChangePage} />
     </div>
   );
-}
+};
 export default Home;
