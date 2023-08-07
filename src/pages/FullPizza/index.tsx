@@ -3,6 +3,8 @@ import React from "react";
 
 import { useParams } from "react-router-dom";
 
+import styles from "./FullPizza.module.scss";
+
 const FullPizza: React.FC = () => {
   const [pizza, setPizza] = React.useState<{
     imageUrl: string;
@@ -32,10 +34,10 @@ const FullPizza: React.FC = () => {
   }
 
   return (
-    <div className="container">
-      <img src={pizza.imageUrl} alt={pizza.name} />
-      <h2>{pizza.name}</h2>
-      <h4>{pizza.price}$</h4>
+    <div className={styles.container}>
+      <img className={styles.image} src={pizza.imageUrl} alt={pizza.name} />
+      <h2 className={styles.header}>{pizza.name}</h2>
+      <h4 className={styles.price}>{pizza.price}$</h4>
     </div>
   );
 };

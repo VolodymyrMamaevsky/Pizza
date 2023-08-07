@@ -9,7 +9,7 @@ import FullPizza from "./pages/FullPizza";
 
 import "./scss/app.scss";
 
-function App() {
+const App = () => {
   return (
     <div className="wrapper">
       <Header />
@@ -23,5 +23,5 @@ function App() {
       </div>
     </div>
   );
-}
+};
 export default App;

@@ -1,10 +1,11 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setSortType, sortSelector } from "../redux/slices/filterSlice";
+import { setSortType } from "../redux/filter/slice";
+import { sortSelector } from "../redux/filter/selectors";
 import { v4 as uuidv4 } from "uuid";
 import { sortList, sortListItem } from "../utils/constants";
 
-function Sort() {
+const Sort: React.FC = React.memo(() => {
   const dispatch = useDispatch();
   const sortRef = React.useRef<HTMLDivElement>(null);
 
@@ -71,6 +72,6 @@ function Sort() {
       )}
     </div>
   );
-}
+});
 
 export default Sort;

@@ -2,6 +2,8 @@ import React from "react";
 import qs from "qs";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import NotFound from "./NotFound";
+import { sortList } from "../utils/constants";
 import { v4 as uuidv4 } from "uuid";
 
 import Categories from "../components/Categories";
@@ -9,19 +11,15 @@ import PizzaBlock from "../components/PizzaBlock";
 import Sort from "../components/Sort";
 import Skeleton from "../components/PizzaBlock/Skeleton";
 import Pagination from "../components/Pagination";
-import NotFound from "./NotFound";
 import {
-  filterSelector,
   setCategoryId,
   setCurrentPage,
   setFilters,
-} from "../redux/slices/filterSlice";
-import {
-  fetchPizzas,
-  FetchPizzasArguments,
-  pizzaDataSelector,
-} from "../redux/slices/pizzasSlice";
-import { sortList } from "../utils/constants";
+} from "../redux/filter/slice";
+import { filterSelector } from "../redux/filter/selectors";
+import { fetchPizzas } from "../redux/pizzas/slice";
+import { pizzaDataSelector } from "../redux/pizzas/selectors";
+import { FetchPizzasArguments, Pizza } from "../redux/pizzas/types";
 import { useAppDispatch } from "../redux/store";
 
 const Home: React.FC = () => {
@@ -34,9 +32,10 @@ const Home: React.FC = () => {
   const isMounted = React.useRef(false);
   const isSearch = React.useRef(false);
 
-  const onCLickCategory = (id: number) => {
+  const onChangeCategory = React.useCallback((id: number) => {
     dispatch(setCategoryId(id));
-  };
+    // eslint-disable-next-line
+  }, []);
 
   const onChangePage = (num: number) => {
     dispatch(setCurrentPage(num));
@@ -50,8 +49,8 @@ const Home: React.FC = () => {
 
     dispatch(
       fetchPizzas({
-        category,
-        sortBy,
+        categoryId: category,
+        sortProp: sortBy,
         order,
         search,
         currentPage,
@@ -66,9 +65,10 @@ const Home: React.FC = () => {
         categoryId,
         currentPage,
       });
-      navigate(`/?${queryString}`);
+      navigate(`?${queryString}`);
     }
     isMounted.current = true;
+    // eslint-disable-next-line
   }, [categoryId, sortProp, searchValue, currentPage]);
 
   React.useEffect(() => {
@@ -76,17 +76,18 @@ const Home: React.FC = () => {
       const params = qs.parse(
         window.location.search.substring(1)
       ) as unknown as FetchPizzasArguments;
-      const sort = sortList.find((obj) => obj.sort === params.sortBy);
+      const sort = sortList.find((obj) => obj.sort === params.sortProp);
       dispatch(
         setFilters({
           searchValue: params.search,
-          categoryId: Number(params.category),
-          currentPage: params.currentPage,
+          categoryId: Number(params.categoryId),
+          currentPage: Number(params.currentPage),
           sortProp: sort || sortList[0],
         })
       );
       isSearch.current = true;
     }
+    // eslint-disable-next-line
   }, []);
 
   React.useEffect(() => {
@@ -95,19 +96,23 @@ const Home: React.FC = () => {
       getPizzas();
     }
     isSearch.current = false;
+    // eslint-disable-next-line
   }, [categoryId, sortProp, searchValue, currentPage]);
 
-  const pizzas = items.map((pizza: any) => (
-    <PizzaBlock {...pizza} key={uuidv4()} />
-  ));
+  const pizzas = items.map((pizza: Pizza) => {
+    return <PizzaBlock {...pizza} key={uuidv4()} />;
+  });
 
-  const skeletons = [...new Array(4)].map((_, index) => (
-    <Skeleton key={uuidv4()} />
-  ));
+  const skeletons = [...new Array(4)].map((_, index) => {
+    return <Skeleton key={uuidv4()} />;
+  });
   return (
     <div className="container">
       <div className="content__top">
-        <Categories categoryId={categoryId} onClickCategory={onCLickCategory} />
+        <Categories
+          categoryId={categoryId}
+          onChangeCategory={onChangeCategory}
+        />
         <Sort />
       </div>
       <h2 className="content__title">All pizzas</h2>

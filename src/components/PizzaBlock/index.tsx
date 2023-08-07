@@ -3,11 +3,9 @@ import { v4 as uuidv4 } from "uuid";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-import {
-  addItem,
-  cartItem,
-  cartSelectorById,
-} from "../../redux/slices/cartSlice";
+import { addItem } from "../../redux/cart/slice";
+import { cartSelectorById } from "../../redux/cart/selectors";
+import { cartItem } from "../../redux/cart/types";
 
 import { typeDough } from "../../utils/constants";
 

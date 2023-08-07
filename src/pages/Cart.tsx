@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import CartItem from "../components/CartItem";
-import { cartSelector, clearItems } from "../redux/slices/cartSlice";
+import { clearItems } from "../redux/cart/slice";
+import { cartSelector } from "../redux/cart/selectors";
 import CartEmpty from "../components/CartEmpty";
 
 const Cart: React.FC = () => {
@@ -103,7 +104,7 @@ const Cart: React.FC = () => {
         </div>
         <div className="cart__items">
           {items.map((item: any) => {
-            return <CartItem key={uuidv4()} />;
+            return <CartItem key={uuidv4()} {...item} />;
           })}
         </div>
         <div className="cart__bottom">

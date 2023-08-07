@@ -1,4 +1,4 @@
-import { SortPropertyEnum } from "../redux/slices/filterSlice";
+import { SortPropertyEnum } from "../redux/filter/types";
 
 export const categories: string[] = [
   "All",
