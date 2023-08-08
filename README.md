@@ -4,4 +4,4 @@
 
 #### Technologies: React, Typescript, Redux Toolkit, React router, Axios
 
-#### Project link:
+#### Project link: https://mamaevsky-pizza.netlify.app
